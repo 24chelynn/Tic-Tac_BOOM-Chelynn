@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💥 Tic-Tac-Boom! Reaction Challenge 💥</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;700&family=Quicksand:wght@500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Tic-Tac-Boom! ⏱️</h1>
+
+        <div class="game-info">
+            <div class="player-turn" id="playerTurn">Player X's turn!</div>
+            <div class="reaction-timer">React in: <span id="reactionTimer">3</span>s</div>
+        </div>
+
+        <div class="status-display" id="status">
+            Click 'Start Game' to play!
+        </div>
+
+        <div class="game-grid" id="gameGrid">
+            <div class="cell" data-cell-index="0"></div>
+            <div class="cell" data-cell-index="1"></div>
+            <div class="cell" data-cell-index="2"></div>
+            <div class="cell" data-cell-index="3"></div>
+            <div class="cell" data-cell-index="4"></div>
+            <div class="cell" data-cell-index="5"></div>
+            <div class="cell" data-cell-index="6"></div>
+            <div class="cell" data-cell-index="7"></div>
+            <div class="cell" data-cell-index="8"></div>
+        </div>
+
+        <button id="startButton">Start Game</button>
+        <button id="restartButton" class="hidden">Play Again!</button>
+
+        <p class="footer-note">Challenge your friend! Fastest click wins the cell!</p>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Chelynn Gabrielle Pattinama | Made for reaction and fun!</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,201 @@
+/* Color Palette:
+   --soft-pink: #FFD1DC; (Player X, Active cell glow, Button)
+   --light-blue: #AEC6CF; (Base cell background)
+   --mint-green: #B2F0C8; (Pastel mint color)
+   --pale-yellow: #FAFAD2; (Container background)
+   --bg-color: #f8f8ff; (Body background - Off-white)
+   --dark-text: #4a4a4a; (Text color)
+   --timer-bg: #FFE0B2; (Light Peach for timer)
+   --timer-danger: #FFAB91; (Darker Peach for danger timer)
+*/
+
+:root {
+    --soft-pink: #FFD1DC;
+    --light-blue: #AEC6CF;
+    --mint-green: #B2F0C8;
+    --pale-yellow: #FAFAD2;
+    --bg-color: #f8f8ff;
+    --dark-text: #4a4a4a;
+    --timer-bg: #FFE0B2;
+    --timer-danger: #FFAB91;
+}
+
+/* --- Global & Body Setup --- */
+body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--dark-text);
+    display: flex;
+    flex-direction: column; /* Penting: Mengatur konten vertikal */
+    justify-content: flex-start; /* Konten dimulai dari atas */
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    text-align: center;
+}
+
+.container {
+    background-color: var(--pale-yellow);
+    padding: 30px 40px;
+    border-radius: 25px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+    max-width: 450px;
+    width: 90%;
+    margin-top: 30px; /* Jarak dari atas */
+}
+
+h1 {
+    font-family: 'Fredoka', sans-serif;
+    color: var(--dark-text);
+    margin-bottom: 20px;
+}
+
+/* --- Game Info (Turn & Timer) --- */
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 10px 15px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.player-turn {
+    font-size: 1.3em;
+    font-weight: 700;
+}
+
+.reaction-timer {
+    background-color: var(--timer-bg);
+    color: var(--dark-text);
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-weight: 700;
+    min-width: 100px;
+}
+
+/* Timer danger state */
+.reaction-timer.danger {
+    background-color: var(--timer-danger);
+    color: white;
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.status-display {
+    font-size: 1.1em;
+    padding: 8px;
+    margin-bottom: 20px;
+    color: var(--dark-text);
+}
+
+/* --- Game Board Styling --- */
+.game-grid {
+    display: grid;
+    /* Ubah ukuran grid agar responsif di layar kecil */
+    grid-template-columns: repeat(3, 1fr); 
+    grid-template-rows: repeat(3, 100px);
+    gap: 10px;
+    margin: 20px auto;
+}
+
+.cell {
+    background-color: var(--light-blue);
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.5em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    /* Penting: Pastikan teks X dan O berada di tengah */
+    line-height: 1; 
+}
+
+/* Cell colors when played */
+.cell.x {
+    color: var(--soft-pink);
+    background-color: var(--bg-color); 
+    cursor: default;
+}
+
+.cell.o {
+    color: var(--dark-text); 
+    background-color: var(--bg-color);
+    cursor: default;
+}
+
+/* Active cell (where current player should click) */
+.cell.clickable {
+    background-color: var(--soft-pink); 
+    box-shadow: 0 0 15px var(--soft-pink), 0 4px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.02);
+    cursor: crosshair; /* Kursor untuk menunjukkan harus diklik */
+    animation: pulse-glow 1.5s infinite alternate;
+}
+
+@keyframes pulse-glow {
+    0% { box-shadow: 0 0 10px var(--soft-pink), 0 4px 8px rgba(0, 0, 0, 0.2); }
+    100% { box-shadow: 0 0 25px var(--soft-pink), 0 4px 12px rgba(0, 0, 0, 0.3); }
+}
+
+/* --- Button Styling --- */
+button {
+    background-color: var(--mint-green);
+    color: var(--dark-text);
+    border: none;
+    padding: 12px 25px;
+    margin: 10px 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+    border-radius: 15px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+    box-shadow: 0 4px 0 rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    background-color: #92e0ae;
+}
+
+button:active {
+    transform: translateY(4px);
+    box-shadow: none;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.hidden {
+    display: none;
+}
+
+.footer-note {
+    margin-top: 15px;
+    font-size: 0.9em;
+    color: #a0a0a0;
+}
+
+/* --- Footer Styling --- */
+footer {
+    width: 100%;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 0.8em;
+    color: var(--dark-text);
+    background-color: var(--bg-color);
+    margin-top: auto; /* Memastikan footer berada di bagian bawah */
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
